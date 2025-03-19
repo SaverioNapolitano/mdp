@@ -204,7 +204,7 @@ void print(FILE* f, const std::vector<int>& v) { // if we use vector v numbers a
 		fprintf(f, "%d\n", x);
 	}
 
-	"PYTHONN" FOR-IN LOOP (IF WE WANT TO MODIFY IT WE JUST REMOVE THE CONST)
+	"PYTHON" FOR-IN LOOP (IF WE WANT TO MODIFY IT WE JUST REMOVE THE CONST)
 	ALWAYS USE const auto& or auto&
 	for(const auto& x : v){
 		fprintf(f, "%d\n", x);

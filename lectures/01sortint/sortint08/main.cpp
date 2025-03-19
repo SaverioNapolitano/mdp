@@ -126,6 +126,7 @@ int main(int argc, char* argv[])
 
     // to keep multiple (all) copies of the same elements/objects
     std::multiset<int> numbers{ std::istream_iterator<int>(input), std::istream_iterator<int>() };
+    
 
     //numbers[3] doesn't work in a set, we need to use iterators
 
@@ -168,7 +169,7 @@ int main(int argc, char* argv[])
     */
 
     /*
-    for (const auto& x : numbers) { // hard when you have to traverse multiple containers together, when you can use range-based for (clearer, less error-prone
+    for (const auto& x : numbers) { // hard when you have to traverse multiple containers together, when you can use range-based for (clearer, less error-prone)
         //fprintf(f, "%d\n", x);
         output << x << "\n";
     }
