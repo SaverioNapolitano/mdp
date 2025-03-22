@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iterator>
 #include <bitset>
 
 int main(int argc, char** argv) {
@@ -26,22 +27,34 @@ int main(int argc, char** argv) {
 
 	std::vector<int> numbers{ std::istream_iterator<int>(input), std::istream_iterator<int>() };
 
-	int bits = 0;
-	for (auto& number : numbers) {
-		if (std::endian::native == std::endian::little) {
-			output << std::bitset<11>{~number + (uint64_t)1};
+	int buffer_size = 0;
+	std::bitset<8> buffer;
+	for (auto& num : numbers) {
+		int steps = 0;
+		while (steps < 11) {
+			int shift = num >> 10;
+			buffer[0] = (shift) & 0x1;
+			num <<= 1;
+			buffer_size++;
+			if (buffer_size == 8) {
+				output.write(reinterpret_cast<char*>(&buffer), sizeof(char));
+				buffer_size = 0;
+			}
+			else {
+				buffer <<= 1;
+			}
+			steps++;
 		}
-		else {
-			output << std::bitset<11>{~std::byteswap(number) + (uint64_t)1};
-		}
-		bits += 11;
 	}
-	int padding = (bits / 8 + 1) * 8 - bits;
-	for (int i = 0; i < padding; i++) {
-		output << std::bitset<1>{(uint64_t)0};
+
+	while (buffer_size > 0) {
+		buffer_size++;
+		if (buffer_size == 8) {
+			output.write(reinterpret_cast<char*>(&buffer), sizeof(char));
+			break;
+		}
+		buffer <<= 1;
 	}
 
 	return 0;
-
-
 }
