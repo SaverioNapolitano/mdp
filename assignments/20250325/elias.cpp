@@ -4,7 +4,8 @@
 #include <vector>
 #include <iterator>
 #include <cmath>
-
+//#include <string>
+//#include <bit>
 class bitwriter {
 	std::ostream& os_;
 	uint8_t buffer_ = 0;
@@ -66,16 +67,45 @@ public:
 		return is_;
 	}
 
+	/* Instead of checking the input stream we can check bitreader with !br
+	operator bool() const {
+		return bool(is_); // return is_.good();
+	}
+	*/
+
 
 };
+
+
+/*
+uint32_t map(int32_t x){
+	// ...
+}
+*/
+/*
+void compress(const std::string& infile, const std::string& outfile) {
+	// use exit() to signal big errors from a void function
+	// ...
+}
+
+void unmap(...){
+	// ...
+}
+
+void decompress(...){
+	// ...
+}
+*/
+
+
 
 int main(int argc, char** argv) {
 	if (argc != 4 || (argv[1][0] != 'c' && argv[1][0] != 'd')) {
 		std::println(std::cerr, "Usage: {} [c|d] <filein> <fileout>", argv[0]);
 		return 1;
 	}
-
-	if (argv[1][0] == 'c') {
+	// using namespace std::string_literals;
+	if (argv[1][0] == 'c') { // argv[1] == "c"s to define a const string // DON'T DO argv[1][0] because it would work also with "cheese" and it shouldn't
 		std::ifstream is(argv[2]/*, std::ios::binary*/);
 		if (!is) {
 			std::cerr << "Error opening input file\n";
@@ -93,9 +123,10 @@ int main(int argc, char** argv) {
 		// map(x) = -2x if x < 0 else 2x + 1
 		for (auto& x : numbers) {
 			x = x < 0 ? x *= (-2) : 2 * x + 1;
-			size_t trailingZeros = static_cast<size_t>(std::floor(std::log2(x)));
+			size_t trailingZeros = static_cast<size_t>(std::floor(std::log2(x))); // Alternative idea: the number of bits needed is (the position of the most significant 1) * 2 - 1 (we can find it by shifting to the right the number until we find a 0)
+			// there is a function for that -> bit_width() defined in header bit
 			bw(0, trailingZeros);
-			bw(static_cast<uint32_t>(x), trailingZeros + 1);
+			bw(static_cast<uint32_t>(x), trailingZeros + 1); // bw(static_cast<uint32_t>(x), std::bit_width(static_cast<uint32_t>(x)) * 2 - 1);
 		}
 	}
 	else {
