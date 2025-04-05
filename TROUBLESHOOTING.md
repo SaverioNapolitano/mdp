@@ -7,3 +7,7 @@ Main errors that happened to me while solving the exercises:
     - If the buffer is *not full* bitwriter **does not** write
     - Bitwriter operates on bit size, **be explicit** (**do not** use `sizeof(char)` since it will assume a value of 1)
 - Remember that strings are *0-terminated* (if you don't want the 0 at the end write just the `len - 1`)
+- Don't implement the decoder based on *your* encoder (it might be biased)
+    - Try to implement the decoder as if the encoder was done by someone else to avoid error propagation
+- **Avoid** `byteswap` (and in general any **c++23** feature)
+    - Valid at the time I'm writing this file, maybe in the future it won't be a problem
