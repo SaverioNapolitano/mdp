@@ -84,17 +84,6 @@ class tree {
 		while (is.get(c)) {
 			uint8_t u = c;
 			frequencies[u]++;
-			/*
-			symbols s{ u };
-			size_t i = 0;
-			if (!isNodeAlreadyPresent(l, s, &i)) {
-				node n{ s, 1 };
-				l.emplace_back(n);
-			}
-			else {
-				l[i].second++;
-			}
-			*/
 		}
 		for (const auto& item : frequencies) {
 			symbols s{ item.first };
@@ -104,18 +93,6 @@ class tree {
 		std::ranges::sort(l, [](node a, node b) {return a.second < b.second; });
 		return l;
 	}
-	/*
-	bool isNodeAlreadyPresent(level l, symbols s, size_t* i) {
-		for (size_t j = 0; j < l.size(); j++) {
-			if (l[j].first == s) {
-				*i = j;
-				return true;
-			}
-		}
-		return false;
-	}
-	*/
-	
 
 	void buildTree(level leaves) {
 		level last_level = leaves;
@@ -202,11 +179,6 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 	if (argv[1] == "c"s) {
-		/*
-		if (argv[2] == "bibbia.txt"s) {
-			return EXIT_FAILURE;
-		}
-		*/
 		std::ifstream is(argv[2], std::ios::binary);
 		if (!is) {
 			return EXIT_FAILURE;
@@ -260,11 +232,6 @@ int main(int argc, char** argv) {
 		if (!is) {
 			return EXIT_FAILURE;
 		}
-		/*
-		if (argv[3] == "bibbia_comp.bin"s) {
-			return EXIT_FAILURE;
-		}
-		*/
 		
 		std::ofstream os(argv[3], std::ios::binary);
 		if (!os) {
@@ -284,7 +251,6 @@ int main(int argc, char** argv) {
 		is.get(c);
 		uint8_t tableEntries = c;
 		std::vector<tableentry> huffmanTable{};
-		std::vector<std::vector<uint32_t>> table{};
 		for (size_t i = 0; i < tableEntries; i++) {
 			tableentry e;
 			uint32_t symbol = 0;
@@ -293,11 +259,6 @@ int main(int argc, char** argv) {
 			br(symbol, 8);
 			br(len, 5);
 			br(code, len);
-			std::vector<uint32_t> entry;
-			entry.push_back(symbol);
-			entry.push_back(len);
-			entry.push_back(code);
-			table.push_back(entry);
 			e.symbol = symbol;
 			e.len = len;
 			e.code = code;

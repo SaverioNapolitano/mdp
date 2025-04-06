@@ -1,0 +1,1 @@
+small example of text compression with huffman algorithm
