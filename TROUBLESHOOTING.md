@@ -11,3 +11,5 @@ Main errors that happened to me while solving the exercises:
     - Try to implement the decoder as if the encoder was done by someone else to avoid error propagation
 - **Avoid** `byteswap` (and in general any **c++23** feature)
     - Valid at the time I'm writing this file, maybe in the future it won't be a problem
+- `assert` is your friend (use it to avoid debugging by hand to find errors with large outputs/inputs)
+    - Look for **off-by-one errors**, **buffer-circularity** etc
