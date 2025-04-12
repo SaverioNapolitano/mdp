@@ -13,4 +13,5 @@ Main errors that happened to me while solving the exercises:
     - Valid at the time I'm writing this file, maybe in the future it won't be a problem
 - `assert` is your friend (use it to avoid debugging by hand to find errors with large outputs/inputs)
     - Look for **off-by-one errors**, **buffer-circularity** etc
+        - Buffer circularity: check for both `i > max_dict_capacity` (in that case, `i`, which is the index, should restart from the beginning, e.g. 0) and for `offset > size` where `size` is the current number of element in the dictionary (in that case, you should add to `i` `max_dict_capacity` until it gets positive)
     - **Always cast `char` to `uint8_t` before doing operations with it**
