@@ -15,3 +15,5 @@ Main errors that happened to me while solving the exercises:
     - Look for **off-by-one errors**, **buffer-circularity** etc
         - Buffer circularity: check for both `i > max_dict_capacity` (in that case, `i`, which is the index, should restart from the beginning, e.g. 0) and for `offset > size` where `size` is the current number of element in the dictionary (in that case, you should add to `i` `max_dict_capacity` until it gets positive)
     - **Always cast `char` to `uint8_t` before doing operations with it**
+- To insert one character in a string **the only way** is to use `append(size_t count, char c)` 
+    - **Do not** try the version with `char *` or you'll cry 
