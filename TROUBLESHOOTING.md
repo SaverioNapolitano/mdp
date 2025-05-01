@@ -17,3 +17,5 @@ Main errors that happened to me while solving the exercises:
     - **Always cast `char` to `uint8_t` before doing operations with it**
 - To insert one character in a string **the only way** is to use `append(size_t count, char c)` 
     - **Do not** try the version with `char *` or you'll cry 
+- When dealing with images, read **exactly the number of bytes you need to read** (use height, width and if necessary depth)
+    - **Do not** rely on the input stream check
