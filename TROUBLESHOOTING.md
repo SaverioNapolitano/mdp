@@ -19,3 +19,5 @@ Main errors that happened to me while solving the exercises:
     - **Do not** try the version with `char *` or you'll cry 
 - When dealing with images, read **exactly the number of bytes you need to read** (use height, width and if necessary depth)
     - **Do not** rely on the input stream check
+- When dealing with images, **compare the index you used to insert data with the expected size to be sure they match**
+- When dealing with images, if you encounter an error, it's probably because you **misunderstood something about the standard: check carefully**
