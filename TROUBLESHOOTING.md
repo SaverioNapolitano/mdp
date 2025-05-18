@@ -9,8 +9,6 @@ Main errors that happened to me while solving the exercises:
 - Remember that strings are *0-terminated* (if you don't want the 0 at the end write just the `len - 1`) or use the `<<` operator
 - Don't implement the decoder based on *your* encoder (it might be biased)
     - Try to implement the decoder as if the encoder was done by someone else to avoid error propagation
-- **Avoid** `byteswap` (and in general any **c++23** feature)
-    - Valid at the time I'm writing this file, maybe in the future it won't be a problem
 - `assert` is your friend (use it to avoid debugging by hand to find errors with large outputs/inputs)
     - Look for **off-by-one errors**, **buffer-circularity** etc
         - Buffer circularity: check for both `i > max_dict_capacity` (in that case, `i`, which is the index, should restart from the beginning, e.g. 0) and for `offset > size` where `size` is the current number of element in the dictionary (in that case, you should add to `i` `max_dict_capacity` until it gets positive)
@@ -22,4 +20,4 @@ Main errors that happened to me while solving the exercises:
 - When dealing with images, **compare the index you used to insert data with the expected size to be sure they match**
 - When dealing with images, if you encounter an error, it's probably because you **misunderstood something about the standard: check carefully**
 - **Always initialize strings** when you create them (for instance, `std::string str(size, ' ')`) and remember to resize it using the corresponding function (`str.resize(new_size)`)
-- **Always use `double` instead of `float`**
+- **Be careful when choosig what to use between `double` and `float`** (read the exam text carefully)
