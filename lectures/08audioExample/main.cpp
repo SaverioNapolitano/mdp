@@ -20,18 +20,23 @@ void write_samples(const std::string& filename, const std::vector<int16_t>& samp
 
 int main() {
 	// y = A*sin(2*pi*f*t)
-	// freq. camp. = 44100 Hz 
+	// samp. freq. = 44100 Hz 
 	// bit per sample = 16 bit 
 
 	double duration = 3; // 3 s 
-	double f = 440; // Hz
-	double A = 32767; // relative to max (32767) -> 2^15 - 1 
+	double f = 440; // Hz - note: A
+	double f2 = 523; // Hz - note: C next octave
+	double A = 32767 / 2.0; // relative to max (32767) -> 2^15 - 1, halved to be sure we don't go out of bounds
 	std::numbers::pi;
 
 	std::vector<int16_t> samples(static_cast<size_t>(duration * 44100));
 
 	for (size_t i = 0; i < samples.size(); i++) {
-		samples[i] = static_cast<int16_t>(round(A * sin(2 * std::numbers::pi * f * i / 44100)));
+		double note1 = round(A * sin(2 * std::numbers::pi * f * i / 44100));
+		double note2 = round(A * sin(2 * std::numbers::pi * f2 * i / 44100));
+		// mixing = add things together (play sounds at the same time)
+		samples[i] = static_cast<int16_t>(note1 + note2);
+		// we can hear two separate sounds / frequencies (unlike our eyes which can't perform frequency analysis, e.g. we see one color and not its components)
 	}
 
 	write_samples("audio1.raw", samples);
@@ -42,8 +47,6 @@ int main() {
 	is.seekg(0, std::ios::beg);
 	std::vector<int16_t> audio(size / 2);
 	is.read(reinterpret_cast<char*>(audio.data()), size);
-	// quantizzare mi permette di risparmiare bit nella rappresentazione ma introduce rumore 
-	// possiamo quantizzare in maniera diversa in base alla percezione umana del suono 
 	for (auto& x : audio) {
 		//x = saturate(x * 2);
 		x = x / 1000 * 1000;
