@@ -19,5 +19,5 @@ Main errors that happened to me while solving the exercises:
     - **Do not** rely on the input stream check
 - When dealing with images, **compare the index you used to insert data with the expected size to be sure they match**
 - When dealing with images, if you encounter an error, it's probably because you **misunderstood something about the standard: check carefully**
-- **Always initialize strings** when you create them (for instance, `std::string str(size, ' ')`) and remember to resize it using the corresponding function (`str.resize(new_size)`)
+- **Always initialize strings** when you create them (for instance, `std::string str(size, ' ')`) and remember to resize them using the corresponding function (`str.resize(new_size)`) if you didn't use strings' own methods (for instance, if you used `is.read(str.data(), new_size)`)
 - **Be careful when choosig what to use between `double` and `float`** (read the exam text carefully)
