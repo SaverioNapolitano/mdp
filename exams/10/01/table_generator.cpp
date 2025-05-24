@@ -185,7 +185,7 @@ int main()
 	*/
 	
 	hufstr h;
-	std::string s("Qualche vago ione tipo zolfo, bromo, sodio.");
+	std::string s("aeio");
 	std::vector<uint8_t> v = h.compress(s);
 	std::string str = h.decompress(v);
 

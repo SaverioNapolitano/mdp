@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="table_generator.cpp">
+    <ClCompile Include="..\01\table_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hufstr.cpp">
