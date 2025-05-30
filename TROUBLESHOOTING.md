@@ -26,3 +26,10 @@ Main errors that happened to me while solving the exercises:
 - Reading the file content using `istream_iterator`can be done only if the file is opened in textual mode or if the data in binary are still compatible with operator `>>`
 - When using `is.read(char *, size)` and `os.write(char *, size)` remember that `size` is the number of **bytes** to read/write
     - If you have a `vector<T> v` you need to specify `size` as `v.size() * sizeof(T)` to write all its content
+- If you get the “Run failed: you tried to print <n> characters, but output is limited to 20000 characters” error, you either
+    - Are printing too many characters on `cout` (for instance, for debugging purposes to check the content of the file while writing on it)
+    - Are getting a dump from olj which is too large (for instance, when you get all the tests wrong and they’re all big files)
+        - In this case, you can try running fewer test (for instance, if it’s a compression/decompression exercise, allow to execute only one of them and see what’s wrong) 
+- If you get "error: free in tcache" you probably created a set in place and called erase on it 
+    - To solve that you can create a temporary variable 
+
