@@ -32,4 +32,6 @@ Main errors that happened to me while solving the exercises:
         - In this case, you can try running fewer test (for instance, if it’s a compression/decompression exercise, allow to execute only one of them and see what’s wrong) 
 - If you get "error: free in tcache" you probably created a set in place and called erase on it 
     - To solve that you can create a temporary variable 
+- When dealing with audio, if you have `stereo` samples you must code them **one sample per channel alternatively**
+    - Use one buffer per channel to keep things separated and help you 
 
