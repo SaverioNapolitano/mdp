@@ -13,8 +13,8 @@ Main errors that happened to me while solving the exercises:
     - Look for **off-by-one errors**, **buffer-circularity** etc
         - Buffer circularity: check for both `i > max_dict_capacity` (in that case, `i`, which is the index, should restart from the beginning, e.g. 0) and for `offset > size` where `size` is the current number of element in the dictionary (in that case, you should add to `i` `max_dict_capacity` until it gets positive)
     - **Always cast `char` to `uint8_t` before doing operations with it**
-- To insert one character in a string **the only way** is to use `append(size_t count, char c)` 
-    - **Do not** try the version with `char *` or you'll cry 
+- To insert one character in a string use `append(size_t count, char c)` or `push_back()`
+    - **Do not** try the `append` version with `char *` or you'll cry 
 - When dealing with images, read **exactly the number of bytes you need to read** (use height, width and if necessary depth)
     - **Do not** rely on the input stream check
 - When dealing with images, **compare the index you used to insert data with the expected size to be sure they match**
