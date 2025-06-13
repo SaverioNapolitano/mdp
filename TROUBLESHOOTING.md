@@ -13,8 +13,8 @@ Main errors that happened to me while solving the exercises:
     - Look for **off-by-one errors**, **buffer-circularity** etc
         - Buffer circularity: check for both `i > max_dict_capacity` (in that case, `i`, which is the index, should restart from the beginning, e.g. 0) and for `offset > size` where `size` is the current number of element in the dictionary (in that case, you should add to `i` `max_dict_capacity` until it gets positive)
     - **Always cast `char` to `uint8_t` before doing operations with it**
-- To insert one character in a string **the only way** is to use `append(size_t count, char c)` 
-    - **Do not** try the version with `char *` or you'll cry 
+- To insert one character in a string use `append(size_t count, char c)` or `push_back()`
+    - **Do not** try the `append` version with `char *` or you'll cry 
 - When dealing with images, read **exactly the number of bytes you need to read** (use height, width and if necessary depth)
     - **Do not** rely on the input stream check
 - When dealing with images, **compare the index you used to insert data with the expected size to be sure they match**
@@ -26,12 +26,12 @@ Main errors that happened to me while solving the exercises:
 - Reading the file content using `istream_iterator`can be done only if the file is opened in textual mode or if the data in binary are still compatible with operator `>>`
 - When using `is.read(char *, size)` and `os.write(char *, size)` remember that `size` is the number of **bytes** to read/write
     - If you have a `vector<T> v` you need to specify `size` as `v.size() * sizeof(T)` to write all its content
-- If you get the ìRun failed: you tried to print <n> characters, but output is limited to 20000 charactersî error, you either
+- If you get the ‚ÄúRun failed: you tried to print <n> characters, but output is limited to 20000 characters‚Äù error, you either
     - Are printing too many characters on `cout` (for instance, for debugging purposes to check the content of the file while writing on it)
-    - Are getting a dump from olj which is too large (for instance, when you get all the tests wrong and theyíre all big files)
-        - In this case, you can try running fewer test (for instance, if itís a compression/decompression exercise, allow to execute only one of them and see whatís wrong) 
+    - Are getting a dump from olj which is too large (for instance, when you get all the tests wrong and they‚Äôre all big files)
+        - In this case, you can try running fewer test (for instance, if it‚Äôs a compression/decompression exercise, allow to execute only one of them and see what‚Äôs wrong) 
 - If you get "error: free in tcache" you probably created a set in place and called erase on it 
     - To solve that you can create a temporary variable 
 - When dealing with audio, if you have `stereo` samples you must code them **one sample per channel alternatively**
-    - Use one buffer per channel to keep things separated and help you 
+    - Use one buffer per channel to keep things separated and help yourself
 
